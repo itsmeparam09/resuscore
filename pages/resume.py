@@ -126,7 +126,7 @@ if st.session_state.resume_page == "ResumeUploadPage":
         left_space, btn_col, right_space = st.columns([1, 1, 1])
 
         with btn_col:
-            if st.button("Score My Resume"):
+            if st.button("Score My Resume", type="primary"):
                 if resume is None or job_description.strip() == "":
                     st.warning("Please paste a job description and upload a resume first!")
                 else:

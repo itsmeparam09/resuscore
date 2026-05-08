@@ -121,7 +121,7 @@ if st.session_state.letter_page == "LetterUploadPage":
 
     left_space, btn_col, right_space = st.columns([1, 1, 1])
     with btn_col:
-        if st.button("Score My Cover Letter"):
+        if st.button("Score My Cover Letter", type="primary"):
             if resume is None or letter is None or job_description.strip() == "":
                 st.warning("Please upload both files and paste a job description first!")
             else:
