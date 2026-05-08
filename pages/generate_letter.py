@@ -52,7 +52,7 @@ if st.session_state.generate_page == "CoverUploadPage":
         left_space, btn_col, right_space = st.columns([1, 1, 1])
 
         with btn_col:
-            if st.button("Generate Cover Letter"):
+            if st.button("Generate Cover Letter", type="primary"):
                 if resume is None or job_description.strip() == "":
                     st.warning("Please paste a job description and upload a resume first!")
                 else:
