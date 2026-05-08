@@ -104,14 +104,26 @@ The app will open at `http://localhost:8501`
 ```
 ResuScore/
 │
-├── user_interface.py     # Main Streamlit app and all pages
-├── API_calls.py          # All Gemini API prompt functions
-├── data_extractor.py     # JSON parsing and cleaning utilities
-├── test.py               # API key setup and helper functions
-├── requirements.txt      # All pip dependencies
-├── .env                  # Your API key (never committed to GitHub)
-├── .gitignore            # Ignores .env and venv
-└── data/                 # Sample resumes for testing
+├── pages/
+│   ├── generate_letter.py    ← Cover letter generation page
+│   ├── letter_score.py       ← Cover letter scoring page
+│   └── resume.py             ← Resume scoring and feedback page
+│
+├── .streamlit/
+│   └── config.toml           ← Streamlit theme configuration
+│
+├── src/                      ← Source utilities
+├── data/                     ← Sample resumes for testing
+│
+├── user_interface.py         ← Main Streamlit app entry point
+├── API_calls.py              ← All Gemini API prompt functions
+├── parser.py                 ← JSON parsing and cleaning utilities
+├── additional_functions.py   ← Shared helper functions
+├── test.py                   ← API key setup and connection test
+├── requirements.txt          ← All pip dependencies
+├── .env                      ← Your API key (never committed to GitHub)
+├── .gitignore                ← Ignores .env and venv
+└── README.md                 ← You are here
 ```
 
 ---
@@ -143,7 +155,7 @@ Generates a 3-paragraph cover letter using only experience and skills that exist
 **Param Khurana** — First year CS student  
 Building this project to learn AI integration, prompt engineering, and full-stack Python development.
 
-[GitHub](https://github.com/yourusername) · [LinkedIn](https://linkedin.com/in/yourusername)
+[GitHub](https://github.com/itsmeparam.09) · [LinkedIn](www.linkedin.com/in/param-khurana)
 
 ---
 
