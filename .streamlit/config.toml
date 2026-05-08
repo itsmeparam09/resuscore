@@ -1,0 +1,15 @@
+[theme]
+# Primary accent color for widgets (buttons, sliders, etc.)
+primaryColor = "#989050ff"
+
+# Background color for the main page
+backgroundColor = "#fdf3a9ff"
+
+# Background color for the sidebar and other elements
+secondaryBackgroundColor = "#d4ca7cff"
+
+# Text color
+textColor = "#000000ff"
+
+# Font family (choose "sans serif", "serif", or "monospace")
+font = "monospace"
