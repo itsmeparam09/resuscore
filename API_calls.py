@@ -2,9 +2,21 @@ from google import genai
 from dotenv import load_dotenv
 import os
 import json
+import streamlit as st
 
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
+
+def get_api_key():
+    try:
+        key = st.secrets.get("GEMINI_API_KEY_1")
+        if key:
+            return key
+    except Exception:
+        pass
+    return os.getenv("GEMINI_API_KEY_1")
+
+api_key = get_api_key()
+
 
 
 def ValidateJSON(api_key, text):
@@ -57,7 +69,7 @@ def ScoreResume(api_key, resume, job_description):
     4. Impact — do bullet points show achievements and results, not just responsibilities? 
     5. Context- are the words used in a strong and impactful context or just stated vaguely. 
     Return ONLY a JSON object in exactly this format, no extra text: 
-    *Give less waithage to teh prefered qualifications section in the job description
+    *Give less waitage to the prefered qualifications section in the job description when scoring.
     "overall_score": 78, "keyword_match": 80, "relevance": 75, "structure": 90, "impact": 65,"missing_keywords": ["keyword1", "keyword2", "keyword3"] 
     '''
     )
@@ -78,8 +90,9 @@ def ResumeFeedback(api_key, score, resume, job_description):
     The feedback must cover these 4 components: 
     1. Strengths — what the candidate does well relative to this role 
     2. Weaknesses — specific gaps between the resume and job description 
-    3. Missing Keywords — how to naturally incorporate missing keywords into the resume 
+    3. Missing Keywords — how to naturally incorporate missing keywords into the resume. 
     4. Improvements — 3 specific bullet point rewrites showing before and after to demonstrate impact 
+
     Return ONLY a JSON object in exactly this format, no extra text: 
     The provided feedback should not be more than 900 words.
     "strengths": ["strength 1", "strength 2", "strength 3"], "weaknesses": ["weakness 1", "weakness 2", "weakness 3"], "missing_keywords": ["how to include keyword 1", "how to include keyword 2"], "improvements": [  "before": "original bullet point from resume", "after": "improved version of that bullet point", "reason": "why this change makes it stronger"  ]"""

@@ -1,23 +1,22 @@
 import API_calls
 import parser
-api_key = API_calls.api_key
-resume = "Param Khurana Resume New Final.pdf"
-cover_letter = "Cover letter final.pdf"
-job_description = '''What You'll Be Doing
-Build, deploy, and maintain AI agents and workflows that own real parts of the partnerships function, including reporting, support, performance analytics, partner outreach, content, enablement, and market intelligence.
-Ship production reporting in Metabase that we send directly to external partners, and iterating on the dashboards based on partner feedback.
-Identify anomalies, funnel breakages, and data quality issues by building agents that monitor and flag them proactively.
-Draft partner-facing content (one-pagers, campaign briefs, outreach sequences, enablement material) using AI as a co-author and Relay's voice as the source of truth.
-Sit in on partner calls, strategy sessions, and internal reviews, and turn the messy outputs into structured artifacts the team can act on.
-Document everything you build so the next person, human or agent, can pick it up and run.
-Who You Are
-You're AI-native. Claude, ChatGPT, and / or other AI tools are languages that your building and learning from every day. You can describe an agent you've built, a workflow you've automated, or a problem you've solved that a year ago you could not have.
-You’re an AI-builder, not just an AI-user. Vibe-coded side projects, scrappy internal tools, scripts that saved you hours. We don't care about the form, we care that you experiment!
-You’re comfortable with data; reasoning about funnels, conversion rates, and unit economics.
-You're curious about business. You want to understand why partnerships matter, how SMB fintech works, and what makes a good partner relationship, not just execute on tickets.
-You're proactive and self-sufficient: you can take a vague problem, ask the right probing questions, and come back with a working v1.
-You bring a learner's mindset. You'll be operating at the edge of what's possible with current AI tooling, which means a lot of "I don't know yet, let me figure it out".
-'''
+import streamlit as st
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def get_api_key():
+    try:
+        key = st.secrets.get("GEMINI_API_KEY_1")
+        if key:
+            return key
+    except Exception:
+        pass
+    return os.getenv("GEMINI_API_KEY_1")
+
+api_key = get_api_key()
+
 
 def ResumeScoreAndFeedback(api_key, job_description, resume):
     RawResume = parser.extract_text(resume)
@@ -53,5 +52,5 @@ def catagorizeScore(text):
 
 def writeLetter(api_key, job_description, resume):
     resume_string = parser.extract_text(resume)
-    letter = API_calls.GenereateLetter(api_key, job_description, resume_string)
+    letter = API_calls.GenereateLetter(api_key, resume_string, job_description)
     return letter

@@ -3,22 +3,25 @@ import test
 from google.genai import errors
 import os
 
-api_key = st.session_state.get("api_key", test.api_key)
+# Load API keys
+def get_api_keys():
+    keys = []
+    for i in range(1, 6):
+        key = st.secrets.get(f"GEMINI_API_KEY_{i}") or os.getenv(f"GEMINI_API_KEY_{i}")
+        if key:
+            keys.append(key)
+    return keys
 
 if "api_key_index" not in st.session_state:
     st.session_state.api_key_index = 0
 
 if "api_keys" not in st.session_state:
-    st.session_state.api_keys = [
-        os.getenv("GEMINI_API_KEY_1"),
-        os.getenv("GEMINI_API_KEY_2"),
-        os.getenv("GEMINI_API_KEY_3"),
-        os.getenv("GEMINI_API_KEY_4"),
-        os.getenv("GEMINI_API_KEY_5"),
-    ]
-    st.session_state.api_keys = [k for k in st.session_state.api_keys if k]
+    st.session_state.api_keys = get_api_keys()
+
 if "api_key" not in st.session_state:
     st.session_state.api_key = st.session_state.api_keys[0]
+
+api_key = st.session_state.api_key
 
 if "generate_page" not in st.session_state:
     st.session_state.generate_page = "CoverUploadPage"
