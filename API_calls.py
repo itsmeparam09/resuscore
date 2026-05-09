@@ -68,6 +68,7 @@ def ScoreResume(api_key, resume, job_description):
     3. Structure — does the resume have all necessary sections: experience, education, skills, and contact info? 
     4. Impact — do bullet points show achievements and results, not just responsibilities? 
     5. Context- are the words used in a strong and impactful context or just stated vaguely. 
+    Do not use any markdown formatting in your response. No bold, no italics, no asterisks.
     Return ONLY a JSON object in exactly this format, no extra text: 
     *Give less waitage to the prefered qualifications section in the job description when scoring.
     "overall_score": 78, "keyword_match": 80, "relevance": 75, "structure": 90, "impact": 65,"missing_keywords": ["keyword1", "keyword2", "keyword3"] 
@@ -92,7 +93,7 @@ def ResumeFeedback(api_key, score, resume, job_description):
     2. Weaknesses — specific gaps between the resume and job description 
     3. Missing Keywords — how to naturally incorporate missing keywords into the resume. 
     4. Improvements — 3 specific bullet point rewrites showing before and after to demonstrate impact 
-
+    Do not use any markdown formatting in your response. No bold, no italics, no asterisks.
     Return ONLY a JSON object in exactly this format, no extra text: 
     The provided feedback should not be more than 900 words.
     "strengths": ["strength 1", "strength 2", "strength 3"], "weaknesses": ["weakness 1", "weakness 2", "weakness 3"], "missing_keywords": ["how to include keyword 1", "how to include keyword 2"], "improvements": [  "before": "original bullet point from resume", "after": "improved version of that bullet point", "reason": "why this change makes it stronger"  ]"""
@@ -129,7 +130,7 @@ def ScoreLetter(api_key, cover_letter, job_description):
     for the industry?
     4. Structure — does it have a strong opening, a clear middle that 
     sells the candidate, and a call to action closing?
-
+    Do not use any markdown formatting in your response. No bold, no italics, no asterisks.
     Return ONLY a JSON object in exactly this format, no extra text:
     "overall_score": 78,
     "personalization": 80,
@@ -188,6 +189,7 @@ def LetterFeedback(api_key, cover_letter, job_description, resume, letter_score)
     The feedback must be personalized — reference specific lines 
     from the cover letter and specific requirements from the job 
     description. Do not give generic advice.
+    Do not use any markdown formatting in your response. No bold, no italics, no asterisks.
 
     Return ONLY a JSON object in exactly this format, no extra text:
 
@@ -243,6 +245,7 @@ def GenereateLetter(api_key, resume, job_description):
     - Paragraph 3: Brief closing that expresses genuine interest in 
     the specific company, includes a call to action, and ends 
     professionally
+    Do not use any markdown formatting in your response. No bold, no italics, no asterisks.
 
     Return ONLY a JSON object in exactly this format, no extra text:
     "candidate_name": "name extracted from resume",
