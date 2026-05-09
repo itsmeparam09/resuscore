@@ -2,7 +2,7 @@
 
 An AI-powered resume analysis tool that scores your resume against any job description, provides personalized feedback, and generates tailored cover letters — built with Python, Gemini AI, and Streamlit.
 
-🔗 **[Live Demo →](https://your-app-url.streamlit.app)** &nbsp;|&nbsp; ⭐ Star this repo if you find it useful
+🔗 **[Live Demo →](https://resuscore-yawtz55miqzs6ltkrwbtzp.streamlit.app)** &nbsp;|&nbsp; ⭐ Star this repo if you find it useful
 
 ---
 
@@ -152,7 +152,7 @@ Generates a 3-paragraph cover letter using only experience and skills that exist
 
 ## Built by
 
-**Param Khurana** — First year CS student  
+**Param Khurana** — Second year CS student  
 Building this project to learn AI integration, prompt engineering, and full-stack Python development.
 
 [GitHub](https://github.com/itsmeparam.09) · [LinkedIn](www.linkedin.com/in/param-khurana)
