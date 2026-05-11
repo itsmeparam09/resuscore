@@ -81,6 +81,12 @@ elif st.session_state.generate_page == "loading":
             st.session_state.letter = letter
             st.session_state.generate_page = "results"
             st.rerun(scope="app")
+        
+        except errors.ServerError as e:
+            st.error("⚠️ Gemini servers are currently overloaded. Please wait 30 seconds and try again.")
+            if st.button("Try again"):
+                st.rerun(scope="app")
+
         except errors.ClientError as e:
             code = getattr(e, 'code', None) or getattr(e, 'status_code', None)
             error_str = str(e)
