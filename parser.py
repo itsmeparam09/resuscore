@@ -18,10 +18,10 @@ def get_api_key():
 
 api_key = get_api_key()
 
-file = "Param Khurana Resume New Final.pdf"
 def extract_text(file: TextIO):
     text = " "
     try:
+        file.seek(0)
         with pp.open(io.BytesIO(file.read())) as f:
             for page in f.pages:
                 contents = page.extract_text()

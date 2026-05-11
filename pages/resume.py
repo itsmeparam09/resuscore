@@ -156,25 +156,28 @@ elif st.session_state.resume_page == "loading":
     
             st.session_state.resume_page = "results"
             st.rerun(scope="app")
-        except errors.ClientError as e: 
-            if e.status_code == 429:
+        except errors.ClientError as e:
+            code = getattr(e, 'code', None) or getattr(e, 'status_code', None)
+            error_str = str(e)
+    
+            if code == 429 or '429' in error_str:
                 next_index = st.session_state.api_key_index + 1
                 if next_index < len(st.session_state.api_keys):
                     st.session_state.api_key_index = next_index
                     st.session_state.api_key = st.session_state.api_keys[next_index]
-                    st.rerun(scope="app")  # retry automatically with next key
+                    st.rerun(scope="app")
                 else:
                     st.error("⚠️ All API keys have hit their rate limit. Please wait a few minutes and try again.")
                     if st.button("Go back"):
-                        st.session_state.api_key_index = 0  # reset for next time
-                        st.session_state.resume_page = "ResumeUploadPage"
+                        st.session_state.api_key_index = 0
+                        st.session_state.generate_page = "CoverUploadPage"
                         st.rerun(scope="app")
-            elif e.status_code == 403:
-                st.error("⚠️ Invalid API key. Please check your .env file.")
-            elif e.status_code == 500:
+            elif code == 403 or '403' in error_str:
+                st.error("⚠️ Invalid API key. Please check your API key.")
+            elif code == 500 or '500' in error_str:
                 st.error("⚠️ Google's servers are having issues. Please try again.")
             else:
-                st.error(f"⚠️ Something went wrong ({e.status_code}). Please try again.")
+                st.error(f"⚠️ Something went wrong. Please try again. Details: {error_str}")
             
             if st.button("Go back"):
                 st.session_state.resume_page = "ResumeUploadPage"
