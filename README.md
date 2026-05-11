@@ -110,15 +110,15 @@ ResuScore/
 │   └── resume.py             ← Resume scoring and feedback page
 │
 ├── .streamlit/
+│   ├── secrets.toml.         ← Your API key in TOML format (never commited to GitHub)
 │   └── config.toml           ← Streamlit theme configuration
 │
 ├── src/                      ← Source utilities
 ├── data/                     ← Sample resumes for testing
 │
-├── user_interface.py         ← Main Streamlit app entry point
+├── UI.py                     ← Main Streamlit app entry point
 ├── API_calls.py              ← All Gemini API prompt functions
 ├── parser.py                 ← JSON parsing and cleaning utilities
-├── additional_functions.py   ← Shared helper functions
 ├── test.py                   ← API key setup and connection test
 ├── requirements.txt          ← All pip dependencies
 ├── .env                      ← Your API key (never committed to GitHub)
