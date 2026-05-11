@@ -2,8 +2,7 @@
 
 An AI-powered resume analysis tool that scores your resume against any job description, provides personalized feedback, and generates tailored cover letters — built with Python, Gemini AI, and Streamlit.
 
-🔗 **[Live Demo →](https://resuscore-yawtz55miqzs6ltkrwbtzp.streamlit.app)** &nbsp;|&nbsp; ⭐ Star this repo if you find it useful
-
+🔗 **[Live Demo →](https://resuscore-yawtz55miqzs6ltkrwbtzp.streamlit.app)** &nbsp;|&nbsp; 
 ---
 
 ![ResuScore Screenshot](screenshot.png)
