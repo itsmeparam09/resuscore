@@ -75,21 +75,42 @@ def ScoreResume(api_key, resume, job_description):
     response = client.models.generate_content(
         model='gemini-2.5-flash',
         contents=f'''You are an expert recruiter with 10 years of experience hiring across multiple industries.
-You will be given a resume and a job description. Your job is to score the resume against the job description.
+        You will be given a resume and a job description. Your job is to score the resume against the job description.
 
-RESUME: {resume}
+        RESUME:
+        {resume}
 
-JOB DESCRIPTION: {job_description}
+        JOB DESCRIPTION:
+        {job_description}
 
-Score the resume across these 5 dimensions:
-1. Keyword Match — do the resume skills and experience match the keywords in the job description?
-2. Relevance — is the candidate background relevant to this specific role?
-3. Structure — does the resume have all necessary sections: experience, education, skills, and contact info?
-4. Impact — do bullet points show achievements and results, not just responsibilities?
-5. Context — are the words used in a strong and impactful context or just stated vaguely?
+        Score the resume across these 5 dimensions on a scale of 0 to 100.
+        Use this rubric strictly for every dimension:
 
-Do not use any markdown formatting. No bold, no italics, no asterisks.
-Give less weightage to the preferred qualifications section when scoring.''',
+        90-100: Exceptional. Exceeds all requirements. Every element is present, specific, and impactful.
+        70-89:  Strong. Meets most requirements with minor gaps.
+        50-69:  Average. Meets some requirements but has clear gaps.
+        30-49:  Weak. Meets few requirements. Significant gaps present.
+        0-29:   Poor. Does not meet the requirements for this dimension.
+
+        DIMENSIONS:
+        1. Keyword Match — what percentage of the important keywords from the job description appear in the resume?
+            Score based on: 90+ keywords = 90-100, 70-89% keywords = 70-89, and so on.
+
+        2. Relevance — how directly does the candidate experience match this specific role?
+            Score based on: directly relevant experience = 70+, tangentially relevant = 50-69, irrelevant = below 50.
+
+        3. Structure — does the resume have all required sections?
+             Score based on: all 4 sections present and well formatted = 80+, missing 1 section = 60-79, missing 2+ = below 60.
+            Required sections: contact info, work experience, education, skills.
+
+        4. Impact — what percentage of bullet points show measurable achievements vs just listing responsibilities?
+            Score based on: 80%+ bullets have metrics = 80+, 50-79% have metrics = 50-79, below 50% = below 50.
+
+        5. Context — are skills and experiences described with strong specific context or stated vaguely?
+            Score based on: all entries have specific context = 80+, some vague entries = 50-79, mostly vague = below 50.
+
+        Give less weightage to preferred qualifications when scoring keyword match.
+            Do not use any markdown formatting. No bold, no italics, no asterisks.''',
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema={

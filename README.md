@@ -33,7 +33,7 @@ ResuScore analyzes your resume against a specific job description and gives you 
 | Layer | Tool |
 |---|---|
 | Language | Python 3.12 |
-| AI model | Google Gemini 2.0 Flash Lite |
+| AI model | Google Gemini 2.5 Flash|
 | AI library | google-genai |
 | PDF parsing | pdfplumber |
 | Frontend | Streamlit |
