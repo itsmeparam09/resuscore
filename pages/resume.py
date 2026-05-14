@@ -295,6 +295,6 @@ elif st.session_state.resume_page == "results":
 
     # Back button
     if st.button("Score another resume"):
-        st.session_state.resume_page = "home"
+        st.session_state.resume_page = "ResumeUplaodPage"
         st.rerun(scope="app")
 
